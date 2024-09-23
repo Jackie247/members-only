@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="sign-up-title">
+        <h1 class="mid-page center">Sign in to your account</h1>
+        <div class="flex mid-page center">
+          <p>Or <a href="/users/signup"> sign up for a new account</a></p>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <form class="form" action="/users/login" method="POST">
+          <div class="form-field">
+            <label>Email address</label>
+            <input id="email" name="email" />
+          </div>
+          <div class="form-field">
+            <label>Password</label>
+            <input id="password" name="password" />
+          </div>
+          <div class="form-bottom">
+            <button type="submit">Log In</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
