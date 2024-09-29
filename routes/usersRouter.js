@@ -4,7 +4,17 @@ const { body, validationResult } = require("express-validator");
 const usersController = require("../controllers/usersController");
 
 router.get("/login", usersController.getLogin);
-router.post("/login", usersController.getLogin);
+router.post(
+  "/login",
+  [
+    body("email")
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("Invalid email address"),
+    body("password").isLength({ min: 6 }),
+  ],
+  usersController.postLogin
+);
 
 router.get("/signup", usersController.getSignup);
 router.post(
@@ -31,14 +41,15 @@ router.post(
       })
       .withMessage("Passwords do not match!"),
   ],
-  (req, res) => {
+  (req, res, next) => {
     const result = validationResult(req);
-    if (result.isEmpty()) {
-      res.redirect("login");
+    const hasErrors = !result.isEmpty();
+    if (hasErrors) {
+      // refresh the page and pass errors to be rendered on view
+      console.log("Errors during sign up:", result.array());
+      res.render("signup", { errors: result.array() });
     }
-    // refresh the page and pass errors to be rendered on view
-    console.log(result.array());
-    res.render("signup", { errors: result.array() });
+    next();
   },
   usersController.postSignup
 );
