@@ -3,18 +3,17 @@ const bcrypt = require("bcryptjs");
 
 exports.getLogin = async (req, res, next) => {
   try {
-    res.render("login");
+    res.render("login", { errors: {} });
   } catch (err) {
     next(err);
   }
 };
 
-exports.postLogin = async (req, res, next) => {
-  // TO DO
-  try {
-  } catch (err) {
-    next(err);
-  }
+exports.getLogout = async (req, res, next) => {
+  req.logout((err) => {
+    if (err) next(err);
+    res.redirect("/");
+  });
 };
 
 exports.getSignup = async (req, res, next) => {

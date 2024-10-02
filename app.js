@@ -4,12 +4,22 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const session = require("express-session");
+const passport = require("./strategies/local-strategy");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/usersRouter");
 
 var app = express();
 
+app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req, res, next) => {
+  // store currentUser in res.locals so we can access currentUser in any of our views
+  res.locals.currentUser = req.user;
+  next();
+});
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 const { body, validationResult } = require("express-validator");
 const usersController = require("../controllers/usersController");
+const passport = require("passport");
 
 router.get("/login", usersController.getLogin);
 router.post(
@@ -13,7 +14,20 @@ router.post(
       .withMessage("Invalid email address"),
     body("password").isLength({ min: 6 }),
   ],
-  usersController.postLogin
+  (req, res, next) => {
+    const result = validationResult(req);
+    const hasErrors = !result.isEmpty();
+    if (hasErrors) {
+      // refresh the page and pass errors to be rendered on view
+      console.log("Errors during log in:", result.array());
+      res.render("login", { errors: result.array() });
+    }
+    next();
+  },
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/",
+  })
 );
 
 router.get("/signup", usersController.getSignup);
@@ -53,5 +67,7 @@ router.post(
   },
   usersController.postSignup
 );
+
+router.get("/logout", usersController.getLogout);
 
 module.exports = router;

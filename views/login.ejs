@@ -17,11 +17,31 @@
         <form class="form" action="/users/login" method="POST">
           <div class="form-field">
             <label>Email address</label>
-            <input id="email" name="email" />
+            <input id="email" name="email" required />
+            <% if (errors && errors.length > 0) { %>
+            <div class="error-message">
+              <% errors.forEach(err => { %> <% if (err.path === 'email') { %>
+              <p><%= err.msg %></p>
+              <% } %> <% }); %>
+            </div>
+            <% } %>
           </div>
           <div class="form-field">
             <label>Password</label>
-            <input id="password" name="password" />
+            <input
+              id="password"
+              name="password"
+              type="password"
+              minlength="6"
+              required
+            />
+            <% if (errors && errors.length > 0) { %>
+            <div class="error-message">
+              <% errors.forEach(err => { %> <% if (err.path === 'password') { %>
+              <p><%= err.msg %></p>
+              <% } %> <% }); %>
+            </div>
+            <% } %>
           </div>
           <div class="form-bottom">
             <button type="submit">Log In</button>

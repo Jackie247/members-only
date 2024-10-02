@@ -4,9 +4,14 @@
     <div>
       <span class="title">Spies R Us</span>
     </div>
+    <% if(currentUser ) {%>
+    <div>WELCOME <%= currentUser .username %></div>
+    <button><a href="/users/logout">Log Out</a></button>
+    <% }else{ %>
     <div>
       <button><a href="/users/signup"> Register</a></button>
       <button><a href="/users/login">Log In </a></button>
     </div>
+    <% }%>
   </div>
 </header>
