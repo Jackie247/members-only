@@ -2,6 +2,9 @@
 <html>
   <head>
     <title></title>
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/forms.css" />
+    <link rel="stylesheet" href="/stylesheets/messages.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,52 +14,38 @@
     />
   </head>
   <body>
-    <%- include('partials/header') %>
+    <div id="overlay"></div>
+    <%- include('partials/header') %> <%- include('partials/messageForm') %>
     <main>
-      <h1 class="mid-page">Activity</h1>
-      <section class="message-board mid-page">
-        <article class="message">
-          <div class="message-info">
-            <span>Codename: Poodle</span>
-            <span>18-08-2024 14:40:46 GMT+0000</span>
-          </div>
-          <div class="message-text">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-          </div>
-        </article>
+      <div class="mid-page">
+        <h1 class="page-title">Activity</h1>
+      </div>
+      <% if(currentUser){%> <%}%>
+      <div id="add-msg-container" class="mid-page">
+        <span>Add a new message</span>
+        <button id="add-msg" type="button">+</button>
+      </div>
 
+      <section class="message-board">
+        <% if(messages){%> <%messages.forEach((message) => {%>
         <article class="message">
           <div class="message-info">
-            <span>Codename: Delta</span>
-            <span>13-08-2024 17:30:11 GMT+0000</span>
+            <span>Codename: <%- message.username %></span>
+            <span>
+              <%- new Date(message.timestamp).toISOString().split('T')[0] %> <%-
+              new Date(message.timestamp).toTimeString().split(' ')[0] %>
+            </span>
+          </div>
+          <div>
+            <h2 class="message-title"><%-message.title%></h2>
           </div>
           <div class="message-text">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
+            <p><%-message.text%>></p>
           </div>
         </article>
+        <%})%> <%};%>
       </section>
     </main>
   </body>
+  <script src="/js/indexScripts.js"></script>
 </html>

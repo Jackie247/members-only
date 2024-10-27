@@ -1,0 +1,13 @@
+<h1>FIRST RIDDLE</h1>
+<form action="/riddle/1" method="POST">
+  <%if(error){%>
+  <div><%-error%></div>
+  <div>Heres a hint: <%- hint %></div>
+  <%}%>
+  <span
+    >What word begins with e, ends with e, and contains one letter, but is not
+    the letter e?
+  </span>
+  <input name="answer" id="answer" />
+  <button type="submit">Answer</button>
+</form>

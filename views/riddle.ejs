@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/riddle.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <main>
+      <% if(currentUser.membership){%>
+      <h1>Looks like you're already a member!</h1>
+      <%}else{%>
+      <h1 class="mid-page">Quiz</h1>
+      <section class="mid-page">
+        <p>So you want to become a member?</p>
+        <p>You will have to solve 3 riddles!</p>
+        <p><b>HINT:</b>the answer is always one word</p>
+        <button><a href="/riddle/1">Click here to begin!</a></button>
+      </section>
+      <%}%>
+    </main>
+  </body>
+</html>

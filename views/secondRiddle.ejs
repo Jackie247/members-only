@@ -1,0 +1,13 @@
+<h1>SECOND RIDDLE</h1>
+<form action="/riddle/2" method="POST">
+  <%if(error){%>
+  <div><%-error%></div>
+  <div>Heres a hint: <%- hint %></div>
+  <%}%>
+  <span
+    >Rich people need it, Poor people have it, And if you eat it you will die.
+    What is it?
+  </span>
+  <input name="answer" id="answer" />
+  <button type="submit">Answer</button>
+</form>

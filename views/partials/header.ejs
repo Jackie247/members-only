@@ -1,16 +1,29 @@
-<header class="header">
-  <div class="header-container">
-    <div class="logo">Logo Here</div>
-    <div>
-      <span class="title">Spies R Us</span>
-    </div>
+<header class="header flex">
+  <div class="logo"><img src="/images/logo.webp" alt="logo" /></div>
+  <nav>
+    <ul class="nav-items-container flex">
+      <li class="nav-item">
+        <a href="/">Dashboard</a>
+      </li>
+      <% if(currentUser ) {%>
+      <li class="nav-item">
+        <a href="/riddle">Become a member</a>
+      </li>
+      <li class="nav-item">
+        <a href="/settings">Settings</a>
+      </li>
+      <% }%>
+    </ul>
+  </nav>
+  <div id="user-container">
     <% if(currentUser ) {%>
-    <div>WELCOME <%= currentUser .username %></div>
-    <button><a href="/users/logout">Log Out</a></button>
+    <div>
+      <div>WELCOME <%= currentUser .username %></div>
+      <a class="button" href="/users/logout">Log Out</a>
+    </div>
     <% }else{ %>
     <div>
-      <button><a href="/users/signup"> Register</a></button>
-      <button><a href="/users/login">Log In </a></button>
+      <a class="button" href="/users/login">Log In</a>
     </div>
     <% }%>
   </div>

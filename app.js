@@ -7,8 +7,9 @@ var logger = require("morgan");
 const session = require("express-session");
 const passport = require("./strategies/local-strategy");
 
-var indexRouter = require("./routes/index");
+var indexRouter = require("./routes/dashboardRouter");
 var usersRouter = require("./routes/usersRouter");
+var riddleRouter = require("./routes/riddleRouter");
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/riddle", riddleRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler

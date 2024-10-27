@@ -1,0 +1,47 @@
+.message-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  width: 75%;
+  margin: auto;
+}
+
+.message {
+  background: #2a2438;
+  border-radius: 2.5px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.message:hover {
+  transform: scale(1.025);
+}
+
+.message-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #5c5470;
+  border-radius: 2.5px 2.5px 0 0;
+  height: 30px;
+}
+
+.message-title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.message-text {
+  font-size: 11px;
+  color: white;
+}
+.message-text p {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
